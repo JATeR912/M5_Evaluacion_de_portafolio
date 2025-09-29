@@ -14,7 +14,8 @@ INSERT INTO programas (nombre_programa, tipo_programa) VALUES
 ('JavaScript','Lenguaje de programación'),
 ('GitHub','Plataforma de alojamiento de código'),
 ('Python','Lenguaje de programación'),
-('Drawio','Herramienta de diagramación en línea');
+('Drawio','Herramienta de diagramación en línea'),
+('ERD Editor','Herramienta de modelado de diagramas');
 
 --Insertar datos tabla proyectos.
 INSERT INTO proyectos (nombre_proyecto, descripcion_proyecto, fecha_creacion, url_repositorio, estado_proyecto, id_modulo) VALUES
