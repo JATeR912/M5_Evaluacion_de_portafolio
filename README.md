@@ -53,7 +53,7 @@
         4. **Modificar registros:**
         - Ejecuta `Manipulacion_DML/insert_update_delete.sql` si deseas probar inserciones, actualizaciones o eliminaciones.
 
-        5. **⚠️ Evolución con Categorías (Opcional):**
+        5. ** Evolución con Categorías (Opcional):**
         - Ejecuta `Definicion_DDL/create_alter_drop_truncate.sql` **solo al final**, cuando decidas reemplazar `modulos` por `categorias`.
         - Este script modifica la estructura y **elimina la tabla `modulos`**, así que úsalo solo si ya no necesitas esa tabla.
 
