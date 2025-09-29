@@ -1,47 +1,69 @@
----Instrucciones---
+# Base de Datos - Registro de Proyectos del Portafolio
 
-    En función de tu proyecto personal previamente establecido, deberás implementar clase a clase las diferentes tecnologías y competencias técnicas adquiridas a lo largo del curso.
+    Este repositorio contiene la estructura y lógica de una base de datos relacional diseñada para registrar y gestionar proyectos personales realizados durante una formación bootcamp en desarrollo de software.
 
-    Recuerda que este proyecto irá directamente al registro de evidencia de tu portafolio, el cual deberá demostrar el dominio, competencias técnicas y diferentes habilidades relacionadas con la gestión de bases de datos relacionales.
+## Propósito
 
----Requerimientos Funcionales Mínimos Esperados---
+    El objetivo de esta base de datos es:
 
-    1.- Distinguir las características, rol y elementos fundamentales de una base de datos relacional para la gestión de la información en una organización.
+        - Almacenar información de proyectos desarrollados.
+        - Vincular cada proyecto con los programas (tecnologías/herramientas) utilizados.
+        - Relacionar los proyectos con un módulo de estudio o categoría temática.
+        - Registrar avances mediante estados de proyecto (Ej: Terminado, En progreso, Pendiente, etc.).
 
-        Describir los componentes básicos de una base de datos relacional tablas, registros, campos, claves primarias y foráneas.
+            Además, el repositorio incluye procedimientos almacenados como **funcionalidades extra** que automatizan ciertas tareas comunes como insertar proyectos y asociarlos con programas existentes.
 
-        Explicar cómo se gestionan y almacenan los datos en tablas y cómo se establece la relación entre ellas para satisfacer necesidades organizacionales.
 
-        Ejemplo: Crear una tabla de clientes y otra de pedidos, relacionándolas por una clave foránea.
+## Estructura General
 
-    2.- Utilizar Lenguaje Estructurado de Consultas (SQL) para la obtención de información que satisface los requerimientos planteados a partir de un modelo de datos dado.
+    Las principales tablas creadas son:
 
-        Desarrollar consultas SQL para obtener información específica de las tablas, utilizando cláusulas como SELECT, WHERE, JOIN, GROUP BY, entre otras.
+        - `modulos`: Representa los módulos del bootcamp.
+        - `programas`: Tecnologías, herramientas o lenguajes utilizados en los proyectos.
+        - `proyectos`: Información clave de cada proyecto.
+        - `proyectos_programas`: Tabla intermedia para relación muchos a muchos entre proyectos y programas.
+        - `categorias`: (opcional) Permite clasificar proyectos que no estén asociados a un módulo específico.
 
-        Ejemplo: Crear una consulta que obtenga todos los pedidos realizados por un cliente específico.
 
-    3.- Utilizar lenguaje de manipulación de datos (DML) para la modificación de los datos existentes en una base de datos dando solución a un problema planteado.
+## Archivos incluidos
 
-        Implementar consultas de inserción (INSERT), actualización (UPDATE) y eliminación (DELETE) para modificar los datos dentro de las tablas.
+    Los scripts están organizados en diferentes secciones que puedes ejecutar de forma secuencial:
 
-        Ejemplo: Crear una consulta que actualice la dirección de un cliente en la base de datos o elimine un pedido que no fue procesado.
+        - `Tablastablas_portafolio.sql`  Creación de base de datos, tablas principales, relaciones.  
+        - `Tablas/datos_tablas.sql`   Inserción de datos de ejemplo.  
+        - `Consultas_SQLselect_where_join_groupby.sql`   Consultas para explorar los datos.  
+        - `Definicion_DDL/create_alter_drop_truncate.sql`   Opcional: crea la tabla `categorias` para proyectos fuera del bootcamp.Modifica estructura.
+        - `Manipulacion_DML/insert_update_delete.sql`   Consultas DML: insertar, actualizar y eliminar registros. 
+        - `Extra_TCL/commit_rollback.sql`   Procedimientos almacenados que automatizan la lógica de inserción y validación. 
 
-    4.- Implementar estructuras de datos relacionales utilizando lenguaje de definición de datos (DDL) a partir de un modelo de datos para la creación y mantención de las definiciones de los objetos de una base de datos.
 
-        Utilizar el lenguaje DDL para crear, modificar y eliminar tablas, índices y otros objetos dentro de una base de datos.
+## Pasos para ejecutar y verificar
 
-        Ejemplo: Crear una tabla para almacenar información de empleados, con las columnas correspondientes como nombre, salario y fecha de ingreso.
+    Sigue este orden para ejecutar correctamente los archivos:
 
-    5.- Elaborar un modelo de datos de acuerdo a los estándares de modelamiento para resolver un problema de baja complejidad.
+        1. **Crear la base y las tablas:**
+        - Ejecuta `Tablastablas_portafolio.sql`
 
-        Crear un diagrama entidad-relación (ER) para representar el modelo de datos antes de implementarlo en una base de datos.
+        2. **Insertar los datos de prueba:**
+        - Ejecuta `Tablas/datos_tablas.sql`
 
-        Ejemplo: Crear un modelo de datos para una tienda en línea, que incluya entidades como productos, clientes, pedidos y métodos de pago, y sus respectivas relaciones.
+        3. **Consultar la base de datos:**
+        - Ejecuta `Consultas_SQLselect_where_join_groupby.sql` para probar consultas de ejemplo.
 
----Condiciones de entrega---
+        4. **Modificar registros:**
+        - Ejecuta `Manipulacion_DML/insert_update_delete.sql` si deseas probar inserciones, actualizaciones o eliminaciones.
 
-    Subir todos los archivos SQL y diagramas de modelado de datos en carpetas organizadas por tema.
+        5. **⚠️ Evolución con Categorías (Opcional):**
+        - Ejecuta `Definicion_DDL/create_alter_drop_truncate.sql` **solo al final**, cuando decidas reemplazar `modulos` por `categorias`.
+        - Este script modifica la estructura y **elimina la tabla `modulos`**, así que úsalo solo si ya no necesitas esa tabla.
 
-    Incluir un archivo README.md en cada carpeta explicando el propósito del código y cómo ejecutar las consultas.
+        6. **Ejecutar procedimientos (opcional):**
+        - Ejecuta `Extra_TCL/commit_rollback.sql` para crear procedimientos almacenados.
+        - Luego puedes llamarlos con `CALL nombre_procedimiento(...)`.
 
-    Realizar al menos tres commits documentando los cambios realizados en el código.
+
+## Consideraciones 
+
+    - El proyecto está diseñado para ser **escalable y evolutivo**. Se puede usar tanto durante el bootcamp (con módulos) como posteriormente (con categorías).
+    - Los **procedimientos almacenados** son extras que demuestran el uso de **TCL (Transacción Control Language)** y ayudan a mantener la integridad de los datos.
+    - Se implementan **restricciones CHECK y claves foráneas** para asegurar la consistencia de los datos.
